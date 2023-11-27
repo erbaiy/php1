@@ -6,4 +6,4 @@ if(isset($_POST['submit'])){
   mysqli_query($con,$query);
 }
 
-?>
+?>   

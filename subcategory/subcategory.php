@@ -280,16 +280,16 @@ $(document).ready(function()    {
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	<li class="nav-item">
-        <a class="nav-link" href="subcategory/subcategory.php">subcategory</a>
+        <a class="nav-link" href="utilisateur.php">utilisateur</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="category/category.php">category <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="category.php">category <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="resources/resource.php">resources</a>
+        <a class="nav-link" href="#">subcategory</a>
       </li>
       <li class="nav-item">
-       
+        <a class="nav-link disabled" href="#">resources</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -298,7 +298,6 @@ $(document).ready(function()    {
     </form>
   </div>
 </nav></header>
-<a href="problem.php">problem</a>
 
 <div class="container-xl">
 	<div class="table-responsive">
@@ -309,7 +308,7 @@ $(document).ready(function()    {
 						<h2>Manage <b>Employees</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New subcategory</span></a>
 												
 					</div>
 				</div>
@@ -323,27 +322,22 @@ $(document).ready(function()    {
 								<label for="selectAll"></label>
 							</span>
 						</th>
-						<th>id</th>
+						<th>subcategoryid</th>
 						<th>name</th>
-						<th>email</th>	
-						<th>squadid</th>
-						
-						
+						<th>categoryID</th>
+						<th>update/delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					
 				<?php
-				include('conection.php');
-				$query="SELECT * FROM utilisateur ";
+				include('../conection.php');
+				$query="SELECT * from subcategory AS sub inner JOIN category AS cat ON sub.CategoryID=cat.CategoryID ";
 				$result=mysqli_query($con,$query);
-				
 				if($result){
 					while($row=mysqli_fetch_assoc($result)){
-						$id=$row['UserID'];
-						$name=$row['Nom'];
-						$email=$row['Email'];
-						$squadid=$row['squadid'];
+						$subcategoryid=$row['SubcategoryID'];
+						$name=$row['subname'];
+						$categoryName=$row['Nom'];
 						echo '<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -351,14 +345,15 @@ $(document).ready(function()    {
 								<label for="checkbox1"></label>
 							</span>
 						</td>
-						<td>'.$id.'</td>
+						<td>'.$subcategoryid.'</td>
 						<td>'.$name.'</td>
-						<td>'.$email.'</td>
-						<td>'.$squadid.'</td>
+						<td>'.$categoryName.'</td>
+						
+						
 						<td>
 						  
-						<a href="updat.php?id='. $id .'">update</a>
-							<a href="delet.php?id='. $id .'><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
+						<a href="updatesub.php?id='.$subcategoryid.'">update</a>
+							<a href="deletesub.php?id='.$subcategoryid.'"><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
 						
 						</td>
 					</tr>';
@@ -369,6 +364,8 @@ $(document).ready(function()    {
 
 
 				?>
+
+				
 				</tbody>
 			
 			</table>
@@ -381,30 +378,33 @@ $(document).ready(function()    {
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" action="insert.php" >
+			<form method="POST" action="addsub.php" >
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Employee</h4>
+					<h4 class="modal-title">Add Subcategory</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Name</label>
+						<label>subcategoryname</label>
 						<input type="text" name="name" class="form-control" required>
-					</div>
+					</div>			
 					<div class="form-group">
-						<label>Email</label>
-						<input type="email"name="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>role</label>
-						<!-- <textarea class="form-control" name="role" required></textarea> -->
-						<input class="form-control" name="role" type="text">
-					
-					</div>
-					<div class="form-group">
-						<label>squadid</label>
-						<input type="text" name="squadid" class="form-control" required>
-					</div>					
+						<label>selct category</label>
+						
+						<select name="category">	
+    <?php
+    include('../conection.php');
+    $categories = mysqli_query($con, "SELECT * FROM category");
+    while ($c = mysqli_fetch_array($categories)) {
+		
+        ?>
+        <option value="<?php echo $c['CategoryID']; ?>"><?php echo $c['Nom']; ?></option>
+        <?php
+    }
+    ?>
+</select>
+						
+					</div>			
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -414,42 +414,7 @@ $(document).ready(function()    {
 		</div>
 	</div>
 </div>
-<!-- Edit Modal HTML -->
 
-<!-- <div id="editEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<form action="updat.php" method="POST">
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" name="name" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" name="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>role</label>
-						<textarea class="form-control"name="role" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>squadid</label>
-						<input type="text" name="squadid" class="form-control" required>
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" name="update" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 

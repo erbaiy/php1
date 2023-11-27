@@ -6,6 +6,7 @@ if (isset($_POST['submit'])) {
 	
     $email = ($_POST['email']);
     $role = ($_POST['role']);
+    
     // $squadid = ($_POST['squadid']);
 
 

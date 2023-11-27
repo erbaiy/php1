@@ -349,8 +349,8 @@ $(document).ready(function()    {
 						
 						<td>
 						  
-						<a href="#">update</a>
-							<a href="delete_category.php?categoryID='.$id.'"><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
+						<a href="update_category.php?CategoryID='. $id .'">update</a>
+							<a href="delete_category.php?id='. $id .'"><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
 						
 						</td>
 					</tr>';
