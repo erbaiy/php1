@@ -9,6 +9,9 @@ if(isset($_POST['submit'])){
     
     
     $query="INSERT INTO subcategory(subname) VALUE ('$subcategoryName')";
-    mysqli_query($con,$query);
+    $update=mysqli_query($con,$query);
+    if($update){
+        header('location:subcategory.php');
+    }
 }
 ?>

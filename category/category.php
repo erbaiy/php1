@@ -272,7 +272,7 @@ $(document).ready(function()    {
 </head>
 <body>
 	<header><nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">home</a>
+  <a class="nav-link" href="#">home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -280,16 +280,13 @@ $(document).ready(function()    {
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	<li class="nav-item">
-        <a class="nav-link" href="#">subcategory</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">category <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../subcategory/subcategory.php">subcategory</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">subcategory</a>
+        <a class="nav-link" href="../index.php">user</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">resources</a>
+	  <a class="nav-link" href="../resources/resource.php">resources</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -305,10 +302,10 @@ $(document).ready(function()    {
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Manage <b>Employees</b></h2>
+						<h2>Manage <b>category</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New category</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span> New category</span></a>
 												
 					</div>
 				</div>
@@ -324,7 +321,8 @@ $(document).ready(function()    {
 						</th>
 						<th>id</th>
 						<th>category_name</th>
-						<th>update/delete</th>
+						<th>update</th>
+						<th>delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -349,8 +347,9 @@ $(document).ready(function()    {
 						
 						<td>
 						  
-						<a href="update_category.php?CategoryID='. $id .'">update</a>
-							<a href="delete_category.php?id='. $id .'"><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
+						<a href="update_category.php?CategoryID='. $id .'"><i class="fa-solid fa-pen-to-square"></i></a>
+						</td>
+						<td>	<a href="delete_category.php?id='. $id .'"><i class="material-icons" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-trash"></i></i></a>
 						
 						</td>
 					</tr>';
@@ -377,7 +376,7 @@ $(document).ready(function()    {
 		<div class="modal-content">
 			<form method="POST" action="add_category.php" >
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Employee</h4>
+					<h4 class="modal-title">Add category</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					

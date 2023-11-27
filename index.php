@@ -272,7 +272,7 @@ $(document).ready(function()    {
 </head>
 <body>
 	<header><nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">home</a>
+  <a class="nav-link" href="#">home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -298,7 +298,7 @@ $(document).ready(function()    {
     </form>
   </div>
 </nav></header>
-<a href="problem.php">problem</a>
+
 
 <div class="container-xl">
 	<div class="table-responsive">
@@ -309,7 +309,7 @@ $(document).ready(function()    {
 						<h2>Manage <b>Employees</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New Employee</span></a>
 												
 					</div>
 				</div>
@@ -326,7 +326,9 @@ $(document).ready(function()    {
 						<th>id</th>
 						<th>name</th>
 						<th>email</th>	
-						<th>squadid</th>
+						<th>update</th>	
+						<th>delete</th>	
+						
 						
 						
 					</tr>
@@ -343,7 +345,7 @@ $(document).ready(function()    {
 						$id=$row['UserID'];
 						$name=$row['Nom'];
 						$email=$row['Email'];
-						$squadid=$row['squadid'];
+					
 						echo '<tr>
 						<td>
 							<span class="custom-checkbox">
@@ -354,13 +356,13 @@ $(document).ready(function()    {
 						<td>'.$id.'</td>
 						<td>'.$name.'</td>
 						<td>'.$email.'</td>
-						<td>'.$squadid.'</td>
+						
 						<td>
 						  
-						<a href="updat.php?id='. $id .'">update</a>
-							<a href="delet.php?id='. $id .'><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
+						<a href="updat.php?id='. $id .'"><i class="fa-solid fa-pen-to-square"></i></a>
 						
 						</td>
+						<td><a href="delet.php?id='. $id .'"><i class="fa-solid fa-trash"></i></a></td>						
 					</tr>';
 
 					}
@@ -395,16 +397,8 @@ $(document).ready(function()    {
 						<label>Email</label>
 						<input type="email"name="email" class="form-control" required>
 					</div>
-					<div class="form-group">
-						<label>role</label>
-						<!-- <textarea class="form-control" name="role" required></textarea> -->
-						<input class="form-control" name="role" type="text">
 					
-					</div>
-					<div class="form-group">
-						<label>squadid</label>
-						<input type="text" name="squadid" class="form-control" required>
-					</div>					
+										
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -414,42 +408,6 @@ $(document).ready(function()    {
 		</div>
 	</div>
 </div>
-<!-- Edit Modal HTML -->
-
-<!-- <div id="editEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<form action="updat.php" method="POST">
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" name="name" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" name="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>role</label>
-						<textarea class="form-control"name="role" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>squadid</label>
-						<input type="text" name="squadid" class="form-control" required>
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" name="update" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 

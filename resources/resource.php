@@ -280,13 +280,13 @@ $(document).ready(function()    {
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	<li class="nav-item">
-        <a class="nav-link" href="utilisateur.php">utilisateur</a>
+        <a class="nav-link" href="../index.php">user</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="category.php">category <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../category/category.php">category <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">subcategory</a>
+        <a class="nav-link" href="../subcategory/subcategory.php">subcategory</a>
       </li>
     
     </ul>
@@ -306,7 +306,7 @@ $(document).ready(function()    {
 						<h2>Manage <b>recources</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New recources</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New recources</span></a>
 												
 					</div>
 				</div>
@@ -323,7 +323,8 @@ $(document).ready(function()    {
 						<th>recourceID</th>
 						<th>resmeourcesName</th>
 						<th>subcategory</th>
-						<th>update/delete</th>
+						<th>update</th>
+						<th>delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -350,9 +351,11 @@ $(document).ready(function()    {
                             
                             
                             <td>
-                              
-                            <a href="update_resource.php?id='.$ressourceid.'">update</a>
-                                <a href="delete_resource.php?id='.$ressourceid.'"><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
+							
+                            <a href="update_resource.php?id='.$ressourceid.'"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
+                            <td>
+							<a href="delete_resource.php?id='.$ressourceid.'"><i class="material-icons" data-toggle="tooltip" title="Delete">delete</i></a>
                             
                             </td>
                         </tr>';

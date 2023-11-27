@@ -1,10 +1,6 @@
 <?php
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'briefresources';
-$con = mysqli_connect($host, $username, $password, $database);
 
+include('conection.php');
 if ($con) {
     echo 'Connected';
 } else {

@@ -6,7 +6,10 @@ if (isset($_GET['id'])) {
     echo  $subcategoryid;
     $query = "DELETE FROM  subcategory WHERE SubcategoryID ='" . $subcategoryid . "'";
     
-     mysqli_query($con, $query);
+    $update=mysqli_query($con,$query);
+    if($update){
+        header('location:subcategory.php');
+    }
 }
     
 ?>
